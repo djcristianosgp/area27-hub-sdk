@@ -14,6 +14,8 @@ public static class ValidationHelper
         pattern: @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
         options: RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
+    private static readonly Random Random = new();
+
     /// <summary>
     /// Validates a CPF (Cadastro de Pessoas Físicas) number.
     /// </summary>
@@ -52,6 +54,37 @@ public static class ValidationHelper
         }
 
         return EmailRegex.IsMatch(email);
+    }
+
+    /// <summary>
+    /// Generates a valid CPF number.
+    /// </summary>
+    /// <param name="formatted">Whether to return the CPF formatted (xxx.xxx.xxx-xx).</param>
+    /// <returns>A valid CPF number.</returns>
+    public static string GenerateCpf(bool formatted = false)
+    {
+        // Generate 9 random digits
+        var digits = new char[9];
+        for (int i = 0; i < 9; i++)
+        {
+            digits[i] = (char)('0' + Random.Next(10));
+        }
+
+        var baseDigits = new string(digits);
+
+        // Calculate check digits
+        var firstCheck = CalculateCpfCheckDigit(baseDigits);
+        var secondCheckBase = baseDigits + firstCheck;
+        var secondCheck = CalculateCpfCheckDigit(secondCheckBase);
+
+        var cpf = baseDigits + firstCheck + secondCheck;
+
+        if (formatted)
+        {
+            return $"{cpf[..3]}.{cpf.Substring(3, 3)}.{cpf.Substring(6, 3)}-{cpf.Substring(9, 2)}";
+        }
+
+        return cpf;
     }
 
     private static char CalculateCpfCheckDigit(string baseDigits)
