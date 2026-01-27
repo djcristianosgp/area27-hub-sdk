@@ -4,11 +4,11 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <PackageId>Area27.Hub</PackageId>
-    <Version>1.0.6</Version>
+    <Version>1.0.7</Version>
     <Authors>Area27</Authors>
     <Company>Area27</Company>
-    <Description>Reusable utilities for validation, string handling, image processing, text analysis, CPF/CNPJ validation and query, SQL generation helpers, XML/JSON conversion, and PDF generation.</Description>
-    <PackageTags>utilities;validation;extensions;calculator;image;text;cpf;cnpj;sql;xml;json;pdf;converter</PackageTags>
+    <Description>Reusable utilities for validation, string handling, image processing, text analysis, CPF/CNPJ validation and query, SQL generation helpers, XML/JSON conversion, PDF generation, and date manipulation.</Description>
+    <PackageTags>utilities;validation;extensions;calculator;image;text;cpf;cnpj;sql;xml;json;pdf;converter;date;datetime</PackageTags>
     <RepositoryUrl>https://github.com/djcristianosgp/area27-hub-sdk</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

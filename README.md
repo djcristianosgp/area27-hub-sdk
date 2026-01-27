@@ -90,6 +90,61 @@ Console.WriteLine($"Palavra mais longa: {stats.LongestWord}");
 Console.WriteLine($"Palavra mais curta: {stats.ShortestWord}");
 ```
 
+### Manipulação de Datas
+```csharp
+using Area27.Hub.Helpers;
+
+// Diferença entre duas datas
+var data1 = new DateTime(2024, 1, 15);
+var data2 = new DateTime(2026, 3, 27);
+
+// Formato agrupado: "XX dias, XX meses, XX anos"
+var diferenca = DateHelper.CalculateDateDifference(data1, data2, DateHelper.DateResultFormat.Grouped);
+// Resultado: "12 dias, 2 meses, 2 anos"
+
+// Formato separado: "dias=XX, meses=XX, anos=XX"
+var diferenca2 = DateHelper.CalculateDateDifference(data1, data2, DateHelper.DateResultFormat.Separated);
+// Resultado: "dias=12, meses=2, anos=2"
+
+// Calcular idade
+var nascimento = new DateTime(1990, 6, 15);
+var idade = DateHelper.CalculateAge(nascimento); // Com data de hoje
+var idadeFormatada = DateHelper.CalculateAge(nascimento, null, DateHelper.DateResultFormat.Separated);
+// Resultado: "dias=11, meses=7, anos=35"
+
+// Obter apenas idade em anos
+var anosIdade = DateHelper.GetAgeInYears(nascimento); // 35
+
+// Adicionar/Remover dias, meses ou anos
+var novadata1 = DateHelper.AddDays(data1, 10);      // Adiciona 10 dias
+var novadata2 = DateHelper.AddMonths(data1, -3);    // Remove 3 meses
+var novadata3 = DateHelper.AddYears(data1, 1);      // Adiciona 1 ano
+
+// Adicionar período completo
+var novaData = DateHelper.AddPeriod(data1, yearsToAdd: 2, monthsToAdd: 3, daysToAdd: 15);
+
+// Dias entre duas datas
+var dias = DateHelper.DaysBetween(data1, data2); // 808
+
+// Dias úteis entre duas datas (excluindo fins de semana)
+var diasUteis = DateHelper.BusinessDaysBetween(data1, data2);
+
+// Verificar ano bissexto
+var eBissexto = DateHelper.IsLeapYear(2024); // true
+
+// Primeiro e último dia do mês
+var primeiro = DateHelper.GetFirstDayOfMonth(data1);  // 01/01/2024
+var ultimo = DateHelper.GetLastDayOfMonth(data1);     // 31/01/2024
+
+// Nomes em português
+var nomeDia = DateHelper.GetDayNameInPortuguese(data2);          // "segunda-feira"
+var nomeMes = DateHelper.GetMonthNameInPortuguese(data2.Month);  // "março"
+
+// Formatar data em português
+var dataFormatada = DateHelper.FormatDateInPortuguese(data2);
+// Resultado: "27 de março de 2026, segunda-feira"
+```
+
 ### Gerador de SQL
 ```csharp
 using Area27.Hub.Helpers;
@@ -136,6 +191,7 @@ var sqlMultiplas = SqlTableGenerator.GenerateCreateTables(
 - ✅ **Extensões de String**: Tratamento seguro, apenas números
 - ✅ **Processamento de Imagens**: Compressão inteligente, conversão de formatos
 - ✅ **Análise de Texto**: Contagem de palavras, estatísticas
+- ✅ **Manipulação de Datas**: Diferenças, idade, cálculos, formatação em português
 - ✅ **Gerador SQL**: CREATE TABLE para múltiplos bancos de dados
 - ✅ **Recursos SaaS**: API Keys, Tokens, Hashing, Licenças, Slugs
 
