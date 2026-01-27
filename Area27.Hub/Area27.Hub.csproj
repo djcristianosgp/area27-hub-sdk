@@ -4,17 +4,22 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <PackageId>Area27.Hub</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>Area27</Authors>
     <Company>Area27</Company>
     <Description>Reusable utilities for validation, string handling, image processing, text analysis, CPF generation, and SQL generation helpers.</Description>
     <PackageTags>utilities;validation;extensions;calculator;image;text;cpf;sql</PackageTags>
-    <RepositoryUrl>https://github.com/area27/Area27.Hub</RepositoryUrl>
+    <RepositoryUrl>https://github.com/djcristianosgp/area27-hub-sdk</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
