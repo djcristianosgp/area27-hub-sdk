@@ -1,6 +1,6 @@
 # Area27.Hub
 
-Biblioteca utilitária .NET 8 com validações, extensões de string, processamento de imagens, análise de texto, geração de CPF, geração de SQL e utilitários SaaS.
+Biblioteca utilitária .NET 8 com validações, extensões de string, processamento de imagens, análise de texto, geração de CPF, consulta de CNPJ, geração de SQL e utilitários SaaS.
 
 ## Instalação
 
@@ -11,9 +11,12 @@ dotnet add package Area27.Hub
 ## Principais recursos
 - Validação de CPF e email
 - Geração de CPF (com/sem pontuação)
+- Consulta de dados de CNPJ via API pública
 - Processamento de imagens (compressão e conversão)
 - Contagem e estatísticas de palavras
 - Gerador de CREATE TABLE para PostgreSQL, MySQL, SQL Server e SQLite
+- Conversão entre XML e JSON
+- Geração de PDF a partir de JSON
 - Utilitários SaaS: API Keys, tokens, hashing de senha, licenças, slugs
 
 ## Exemplos rápidos
@@ -24,6 +27,20 @@ using Area27.Hub.Helpers;
 
 var cpfValido = ValidationHelper.IsCpfValido("390.533.447-05");
 var cpfGerado = ValidationHelper.GenerateCpf(formatted: true);
+```
+
+### CNPJ
+```csharp
+using Area27.Hub.Helpers;
+
+// Consultar dados de CNPJ (async)
+var dados = await CnpjHelper.ConsultarCnpjAsync("40.357.190/0001-13");
+Console.WriteLine($"Razão Social: {dados?.RazaoSocial}");
+Console.WriteLine($"Capital Social: {dados?.CapitalSocial}");
+Console.WriteLine($"Situação: {dados?.Estabelecimento?.SituacaoCadastral}");
+
+// Versão síncrona
+var dadosSync = CnpjHelper.ConsultarCnpj("40357190000113");
 ```
 
 ### Imagens
