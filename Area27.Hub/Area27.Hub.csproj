@@ -4,7 +4,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <PackageId>Area27.Hub</PackageId>
-    <Version>1.0.2</Version>
+    <Version>1.0.5</Version>
     <Authors>Area27</Authors>
     <Company>Area27</Company>
     <Description>Reusable utilities for validation, string handling, image processing, text analysis, CPF generation, and SQL generation helpers.</Description>
