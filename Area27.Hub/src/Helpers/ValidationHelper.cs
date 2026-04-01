@@ -87,6 +87,37 @@ public static class ValidationHelper
         return cpf;
     }
 
+    /// <summary>
+    /// Validates a CNPJ (Cadastro Nacional da Pessoa Jurídica) number using check-digit verification.
+    /// </summary>
+    /// <param name="cnpj">CNPJ value with or without punctuation.</param>
+    /// <returns><see langword="true"/> when the CNPJ is structurally valid; otherwise <see langword="false"/>.</returns>
+    public static bool IsCnpjValido(string? cnpj)
+    {
+        var digits = cnpj.OnlyNumbers();
+        if (digits.Length != 14)
+            return false;
+
+        // Reject sequences with all the same digit
+        if (digits.All(d => d == digits[0]))
+            return false;
+
+        var first  = CalculateCnpjCheckDigit(digits[..12], new[] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 });
+        var second = CalculateCnpjCheckDigit(digits[..13], new[] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 });
+
+        return digits[12] == first && digits[13] == second;
+    }
+
+    private static char CalculateCnpjCheckDigit(string baseDigits, int[] weights)
+    {
+        var sum = 0;
+        for (int i = 0; i < baseDigits.Length; i++)
+            sum += (baseDigits[i] - '0') * weights[i];
+
+        var remainder = sum % 11;
+        return (char)('0' + (remainder < 2 ? 0 : 11 - remainder));
+    }
+
     private static char CalculateCpfCheckDigit(string baseDigits)
     {
         var sum = 0;
